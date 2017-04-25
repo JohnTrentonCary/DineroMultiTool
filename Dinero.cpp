@@ -218,19 +218,9 @@ void BackgroundJob(std::vector<std::string> configsToRun, ThreadSafeQueue<QueueI
 	isFinished = true;
 }
 
- void runConfigs(std::vector<std::string> benchmarks,
+void runConfigs(std::vector<std::string> benchmarks,
  							std::vector<std::string> builtConfigs)
- {
-	int configurations = builtConfigs.size();
-	std::cout << "Configurations Generated: " << configurations << std::endl;
-	std::cout << "Beginning to run all configurations in 3";
-	for (int i = 3; i > 0; i--) {
-		std::cout << "..." << i;
-		sleep(1);
-	}
-	sleep(1);
-	std::cout << std::endl;
-
+{
 	WINDOW *mainwin;
 	if ( (mainwin = initscr()) == NULL ) {
 		fprintf(stderr, "Error initialising ncurses.\n");
@@ -238,7 +228,8 @@ void BackgroundJob(std::vector<std::string> configsToRun, ThreadSafeQueue<QueueI
 	}
 
 	int benchSize = benchmarks.size() - 1;
-	int configsPerBenchmark = builtConfigs.size() / benchSize;
+	int totalConfigs = builtConfigs.size();
+	int configsPerBenchmark = totalConfigs / benchSize;
 	int width;
 
 	if (configsPerBenchmark < 100)
@@ -250,16 +241,36 @@ void BackgroundJob(std::vector<std::string> configsToRun, ThreadSafeQueue<QueueI
 	init_pair(1, COLOR_BLACK, COLOR_RED);
 	init_pair(2, COLOR_BLACK, COLOR_YELLOW);
 	init_pair(3, COLOR_BLACK, COLOR_GREEN);
+	init_pair(4, COLOR_WHITE, COLOR_BLACK);
 
 	color_set(1, NULL);
-	std::string tempBench = "Benchmark: ";
+	// std::string tempBench = "Benchmark: ";
 
 	for (int i = 0; i < benchSize; i++) {
-		std::string output = tempBench + benchmarks[i];
+		std::string output = benchmarks[i + 1];
 		int lenDif = width - output.length();
-		output.insert(output.end(), lenDif, ' ');
 
-		mvaddstr(i + 1, 0, output.c_str());
+		if (lenDif < 0)
+		{
+			std::string::iterator strIt;
+			std::string out1;
+			// out1.insert(out1.end(), output, configsPerBenchmark);
+			out1.insert( strIt, output.begin(), output.begin() + configsPerBenchmark);
+			mvaddstr( i + 1, 0, out1.c_str());
+
+			color_set(4, NULL);
+			std::string out2;
+			out2.insert(out2.end(), output[configsPerBenchmark], -lenDif);
+			mvaddstr(i + 1, configsPerBenchmark, out2.c_str());
+
+			color_set(1, NULL);
+		}
+		else
+		{
+			output.insert(output.end(), lenDif, ' ');
+
+			mvaddstr(i + 1, 0, output.c_str());
+		}
 		refresh();
 	}
 
@@ -278,11 +289,12 @@ void BackgroundJob(std::vector<std::string> configsToRun, ThreadSafeQueue<QueueI
 		if (safeQueue.Dequeue(outValue))
 		{
 			count +=1;
-			mvaddstr(0,0, std::to_string(count).c_str());
+			color_set(4, NULL);
+			std::string benchesCompleted = "Simulations Complete: " + std::to_string(count / 2) + "/" + std::to_string(totalConfigs);
+			mvaddstr(0,0, benchesCompleted.c_str());
 
-			int benchIndex = (outValue.id / configsPerBenchmark) + 1;
-
-			std::string temp = "Benchmark: " + benchmarks[benchIndex];
+			int benchIndex = (outValue.id / configsPerBenchmark);
+			std::string temp = benchmarks[benchIndex + 1];
 			int value;
 
 			if (outValue.status == 2)
@@ -295,12 +307,15 @@ void BackgroundJob(std::vector<std::string> configsToRun, ThreadSafeQueue<QueueI
 				value = (complete[benchIndex] * width) / configsPerBenchmark;
 			}
 
+			value -= 1;
+			benchIndex += 1;
+
 			color_set(outValue.status, NULL);
 
 			if (value >= temp.length())
-				mvaddstr(benchIndex, value - 1, " ");
+				mvaddstr(benchIndex, value, " ");
 			else
-				mvaddch(benchIndex, value - 1, temp[value]);
+				mvaddch(benchIndex, value, temp[value]);
 
 			refresh();
 		}
@@ -383,9 +398,6 @@ int main(int argc, char const *argv[])
 
 		buildConfigs(configs, builtConfigs, storedConfigs, newConfig, commands[0], commands[1]);
 	}
-
-	std::cout << builtConfigs.size();
-
 
 	std::cout << "Complete" << std::endl;
 
