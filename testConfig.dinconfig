@@ -1,7 +1,8 @@
 DineroLocation: /opt/d4-7/./dineroIV
-Benchmarks: test1.txt test2.txt test3.txt
+Benchmarks: test1.txt test2.txt test3.txt test4.txt test5.txt test6.txt test7.txt test8.txt test9.txt test10.txt
 
-L1DataSizeP: 1 3:5 7 8 
-L1IntsSizeP: 1 3:15
-L1Block: 1 3:5
-L1Asc: 1:4
+L1DataSizeP: 3 4
+L1DataBlockSizeP: 1:4
+L1DataSubBlockSizeP: 0:4
+L2Assoc: 4
+L2AssocHit: 1 4 7
