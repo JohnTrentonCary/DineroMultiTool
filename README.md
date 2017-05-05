@@ -58,6 +58,7 @@ Note: The default for ThreadLimit is whatever OpenMP calculates as the safe numb
 
 
 # Glossary of Terms
+| Term | Description |
 | --- | --- |
 | Associativity | asdfasdf |
 | Cache Block | asdfasdf |
