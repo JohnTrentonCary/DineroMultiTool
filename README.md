@@ -1,5 +1,5 @@
 # DineroMultiTool
-DineroMultiTool was built to automate the generation, execution, and analysis of large batches of configurations and benchmarks on a Dinero IV Cache Simulator.
+DineroMultiTool was built to automate the generation, execution, and analysis across large batches of configurations and benchmarks on a Dinero IV Cache Simulator.
 
 More specifically, it is a tool for those who use Dinero IV to run benchmarks against various CPU cache architectures. The tool is meant to simplify the process of running a large amount of different cache configurations. DineroMultiTool provides configuration generation, execution automation, and CPI analysis of all valid configurations executed.
 
