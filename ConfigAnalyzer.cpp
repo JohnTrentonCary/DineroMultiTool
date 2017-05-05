@@ -35,15 +35,8 @@ void ConfigAnalyzer::populateStoredConfigs(ConfigBuilder &builder)
       getline(inFile, line);
       int j;
 
-      // std::cout << std::endl << "line: " << line << std::endl;
-      // std::cout << "length: " << line.length() << '\n';
-
       if (!std::regex_match(line, reg))
         continue;
-
-      // std::cout << "MATCH FOUND!" << '\n';
-      // char a;
-      // std::cin >> a;
 
       std::string type = line;
       Utility::jumpLines(inFile, line, 3);
