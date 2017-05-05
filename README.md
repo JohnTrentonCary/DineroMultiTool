@@ -1,7 +1,7 @@
 # DineroMultiTool
 DineroMultiTool was built to automate the generation, execution, and analysis across large batches of configurations and benchmarks on a Dinero IV Cache Simulator.
 
-More specifically, it is a tool for those who use Dinero IV to run benchmarks against various CPU cache architectures. The tool is meant to simplify the process of running a large amount of different cache configurations. DineroMultiTool provides configuration generation, execution automation, and CPI analysis of all valid configurations executed.
+More specifically, it is a tool for those who use Dinero IV to run benchmarks against various CPU cache architectures. The tool is meant to simplify the process of running a large amount of different cache configurations. DineroMultiTool provides configuration generation, execution automation, and CPI analysis of all valid configurations executed. All invalid configurations are filtered out.
 
 ## Configuration Commands
 
@@ -55,3 +55,14 @@ Note: The default for ThreadLimit is whatever OpenMP calculates as the safe numb
 | L3 Unified Associativity | L3Assoc: nums (Positive Integers Only) | -l3-uassoc |
 | L3 Unified Associativity Hit Cost (in cycles) | L3AssocHit: nums (Positive Integers Only) | N/A |
 | L3 Unified Associativity Miss Penalty (in cycles) | L3AssocMiss: nums (Positive Integers Only) | N/A |
+
+
+# Glossary of Terms
+| --- | --- |
+| Associativity | asdfasdf |
+| Cache Block | asdfasdf |
+| Cache Sub-Block | asdfasdf |
+| CPI | asdfasdf |
+| Hit Cost | asdfasdf |
+| Miss Penalty | asdfasdf |
+
