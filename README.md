@@ -42,7 +42,7 @@ Note: The default for ThreadLimit is whatever OpenMP calculates as the safe numb
 | L2 Unified Sub Block Size | L2SubBlockSize: 8 32:128 512... | -l2-usbsize |
 | L2 Unified Associativity | L2Assoc: nums (Positive Integers Only) | -l2-uassoc |
 | L2 Unified Associativity Hit Cost (in cycles) | L2AssocHit: nums (Positive Integers Only) | N/A |
-| L2 Unified Associativity Miss Penalty (in cycles) | L2Miss: nums (Positive Integers Only) | N/A |
+| L2 Unified Associativity Miss Penalty (in cycles) | L2AssocMiss: nums (Positive Integers Only) | N/A |
 
 #### L2 Unified Caches
 | Name | Config File Argument | Equivalent Dinero Argument |
@@ -52,4 +52,4 @@ Note: The default for ThreadLimit is whatever OpenMP calculates as the safe numb
 | L3 Unified Sub Block Size | L3SubBlockSize: 8 32:128 512... | -l3-usbsize |
 | L3 Unified Associativity | L3Assoc: nums (Positive Integers Only) | -l3-uassoc |
 | L3 Unified Associativity Hit Cost (in cycles) | L3AssocHit: nums (Positive Integers Only) | N/A |
-| L3 Unified Associativity Miss Penalty (in cycles) | L3Miss: nums (Positive Integers Only) | N/A |
+| L3 Unified Associativity Miss Penalty (in cycles) | L3AssocMiss: nums (Positive Integers Only) | N/A |
