@@ -1,5 +1,5 @@
-# DineroMultiConfigsTool
-This is a tool for those who use dinero to run benchmarks against various CPU architectures. The tool is meant to help simplify the process of running a large amount of different configurations.
+# DineroMultiTool
+This is a tool for those who use Dinero IV to run benchmarks against various CPU cache architectures. The tool is meant to simplify the process of running a large amount of different configurations. DineroMultiTool provides cache configuration generation, execution automation, and CPI analysis of all valid configurations executed.
 
 ## Configuration Commands
 
