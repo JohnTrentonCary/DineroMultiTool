@@ -8,9 +8,9 @@ class ThreadSafeQueue
 {
 private:
     std::mutex protectMyQueue;
-    std::queue<T> myQueue;
 
 public:
+    std::queue<T> myQueue;
     void Enqueue(T &value)
     {
         //lock this scope.

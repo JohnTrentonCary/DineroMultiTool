@@ -1,6 +1,7 @@
+#include <climits>
 #include "CacheLevel.h"
 
-CacheLevel::CacheLevel(int s, int bs, int sbs, int a, int mp, int f, int h, int mr)
+CacheLevel::CacheLevel(int s, int bs, int sbs, int a, int mp, int f, int h, double mr)
 {
 	size = s;
 	blockSize = bs;
@@ -17,31 +18,73 @@ CacheLevel::~CacheLevel()
 {
 }
 
-void CacheLevel::setValue(std::string type, int configValue)
+void CacheLevel::setValue(std::string type, double configValue)
 {
 	if (type == "Size")
-		size = configValue;
+		size = (int)configValue;
 	else if (type == "BlockSize")
-		blockSize = configValue;
+		blockSize = (int)configValue;
 	else if (type == "SubBlock Size")
-		subBlockSize = configValue;
-	else if (type == "Associtivity")
-		associtivity = configValue;
+		subBlockSize = (int)configValue;
+	else if (type == "Associativity")
+		associtivity = (int)configValue;
 	else if (type == "Hit")
-		hit = configValue;
+		hit = (int)configValue;
+	else if (type == "Miss")
+		missPenalty = (int)configValue;
 	else if (type == "Miss Rate")
 		missRate = configValue;
+	else if (type == "Fetches")
+		fetches = (int)configValue;
 }
 
-bool CacheLevel::canContinue(std::string type, int value)
+bool CacheLevel::canContinue(std::string type, double value)
 {
-	if (type == "BlockSize" &&
-		size >= value)
+	int newValue = value;
+	if (type == "Associativity" &&
+			size >= blockSize * newValue)
 		return true;
-	else if (type == "SubBlock Size" &&
-		(blockSize == value || value == 0))
-		return true;
-	
-	return false;
 
+	if (type == "BlockSize" &&
+		size >= newValue)
+		return true;
+
+	if (type == "SubBlock Size" &&
+		blockSize >= newValue &&
+		newValue != 0 &&
+		((newValue & (newValue - 1)) == 0))
+		return true;
+
+	return false;
+}
+
+double CacheLevel::getValue(std::string type)
+{
+	if (type == "Size")
+		return size;
+	else if (type == "BlockSize")
+		return blockSize;
+	else if (type == "SubBlock Size")
+		return subBlockSize;
+	else if (type == "Associativity")
+		return associtivity;
+	else if (type == "Hit")
+		return hit;
+	else if (type == "Miss")
+		return missPenalty;
+	else if (type == "Miss Rate")
+		return missRate;
+	else if (type == "Fetches")
+		return fetches;
+}
+
+double CacheLevel::calcCPI(double missP)
+{
+	if (missRate == -1 || missPenalty == -1 || hit == -1)
+		return -1;
+
+	if(missP == -1)
+		return hit + missRate * missPenalty;
+	else
+		return hit + missRate * missP;
 }

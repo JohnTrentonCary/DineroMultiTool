@@ -11,11 +11,14 @@ class CacheConfiguration
 	CacheLevel L3;
 
 public:
+	double CPI;
+
 	CacheConfiguration();
 	~CacheConfiguration();
 
-	void setCacheValue(std::string config, std::string value);
-	bool canContinue(std::string config, std::string value);
-	static bool canAddToCommand(std::string type);
+	void setCacheValue(const std::string config, const std::string value);
+	bool canContinue(const std::string config, std::string value);
+	static bool canAddToCommand(const std::string type);
+	double getValue(const std::string level, const std::string type);
+	void calcCPI();
 };
-

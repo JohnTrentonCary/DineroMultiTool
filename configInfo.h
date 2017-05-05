@@ -26,9 +26,23 @@ static std::map<std::string, std::map<std::string, std::string> > configInfo = {
 	}
 	},
 	{ "L1InstAssoc:",{
-		{ "type", "Associtivity" },
+		{ "type", "Associativity" },
 		{ "flag", "-l1-iassoc" },
 		{ "naming", "_1ia" },
+		{ "level", "Instruction" }
+	}
+	},
+	{ "L1InstAssocHit:",{
+		{ "type", "Hit" },
+		{ "flag", "" },
+		{ "naming", "_1iah" },
+		{ "level", "Instruction" }
+	}
+	},
+	{ "L1InstAssocMiss:",{
+		{ "type", "Miss" },
+		{ "flag", "" },
+		{ "naming", "_1iam" },
 		{ "level", "Instruction" }
 	}
 	},
@@ -54,9 +68,23 @@ static std::map<std::string, std::map<std::string, std::string> > configInfo = {
 	}
 	},
 	{ "L1DataAssoc:",{
-		{ "type", "Associtivity" },
+		{ "type", "Associativity" },
 		{ "flag", "-l1-dassoc" },
 		{ "naming", "_1da" },
+		{ "level", "Data" }
+	}
+	},
+	{ "L1DataAssocHit:",{
+		{ "type", "Hit" },
+		{ "flag", "" },
+		{ "naming", "_1dah" },
+		{ "level", "Data" }
+	}
+	},
+	{ "L1DataAssocMiss:",{
+		{ "type", "Miss" },
+		{ "flag", "" },
+		{ "naming", "_1dam" },
 		{ "level", "Data" }
 	}
 	},
@@ -82,7 +110,7 @@ static std::map<std::string, std::map<std::string, std::string> > configInfo = {
 	}
 	},
 	{ "L2Assoc:",{
-		{ "type", "Associtivity" },
+		{ "type", "Associativity" },
 		{ "flag", "-l2-uassoc" },
 		{ "naming", "_2a" },
 		{ "level", "Level 2" }
@@ -124,7 +152,7 @@ static std::map<std::string, std::map<std::string, std::string> > configInfo = {
 	}
 	},
 	{ "L3Assoc:",{
-		{ "type", "Associtivity" },
+		{ "type", "Associativity" },
 		{ "flag", "-l3-uassoc" },
 		{ "naming", "_3a" },
 		{ "level", "Level 3" }
@@ -141,6 +169,46 @@ static std::map<std::string, std::map<std::string, std::string> > configInfo = {
 		{ "type", "Miss" },
 		{ "flag", "" },
 		{ "naming", "_3am" },
+		{ "level", "Level 3" }
+	}
+	},
+	{ "l1-icachef",{
+		{ "type", "Fetches" },
+		{ "level", "Instruction" }
+	}
+	},
+	{ "l1-icachem",{
+		{ "type", "Miss Rate" },
+		{ "level", "Instruction" }
+	}
+	},
+	{ "l1-dcachef",{
+		{ "type", "Fetches" },
+		{ "level", "Data" }
+	}
+	},
+	{ "l1-dcachem",{
+		{ "type", "Miss Rate" },
+		{ "level", "Data" }
+	}
+	},
+	{ "l2-ucachef",{
+		{ "type", "Fetches" },
+		{ "level", "Level 2" }
+	}
+	},
+	{ "l2-ucachem",{
+		{ "type", "Miss Rate" },
+		{ "level", "Level 2" }
+	}
+	},
+	{ "l3-ucachef",{
+		{ "type", "Fetches" },
+		{ "level", "Level 3" }
+	}
+	},
+	{ "l3-ucachem",{
+		{ "type", "Miss Rate" },
 		{ "level", "Level 3" }
 	}
 	}
