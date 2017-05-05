@@ -1,6 +1,9 @@
 # DineroMultiConfigsTool
 This is a tool for those who use dinero to run benchmarks against various CPU architectures. The tool is meant to help simplify the process of running a large amount of different configurations.
 
+## Compilation Requirements
+* If compiling using g++, g++ 5 or sooner is required to prevent a bug within the earlier versions of g++.
+
 ## Configuration Commands
 
 Note: For any of the arguments, you can add a "P" before the ":" if you wish to use exponents instead of the value of 2 raised to those exponents.
