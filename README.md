@@ -60,10 +60,10 @@ Note: The default for ThreadLimit is whatever OpenMP calculates as the safe numb
 # Glossary of Terms
 | Term | Description |
 | --- | --- |
-| Associativity | asdfasdf |
-| Cache Block | asdfasdf |
-| Cache Sub-Block | asdfasdf |
-| CPI | asdfasdf |
-| Hit Cost | asdfasdf |
-| Miss Penalty | asdfasdf |
+| Associativity | The division of direct-mapped cache into separate cache sets in an attempt to reduce the amount of misses to cache |
+| Cache Block | The fundamental unit of storage in cache memory. |
+| Cache Sub-Block | Sections within a cache block that share one cache tag. |
+| Cycles per Instruction (CPI) | The average # of clock cycles that a system takes to execute an instruction for a program. |
+| Hit Cost | Amount of CPU cycles used in the event of a cache hit. |
+| Miss Penalty | Amount of CPU cycles used in the event of a cache miss. |
 
