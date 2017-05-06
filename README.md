@@ -3,6 +3,13 @@ DineroMultiTool was built to automate the generation, execution, and analysis ac
 
 More specifically, it is a tool for those who use Dinero IV to run benchmarks against various CPU cache architectures. The tool is meant to simplify the process of running a large amount of different cache configurations. DineroMultiTool provides configuration generation, execution automation, and CPI analysis of all valid configurations executed. All invalid configurations are filtered out.
 
+## How to use
+To use DineroMultiTool you must
+ 1. Write/edit an input file that contains all the arguements that define what configurations you wish to run. Please refer to sections below for guidence 
+ 2. Execute DineroMultiTool and hand it your input file as the 2nd command line arguement. For example: "./DineroMultiTool test.dinconfig"
+ 3. Go do whatever you would like to do which the program generates every possible valid configuration, executes execute these configurations for every defined benchmark and then analyzes the results of the simulations.
+ 4. Once DineroMultiTool has finished, the data for every run will be stored within a folder that has the same name as the benchmark that was used. Additionally, a folder called "Combined" will be produced which contains all of the data from every simulation for each benchmark consolidated into 1 file for each benchmark
+
 ## Compilation Requirements
 * If compiling using g++, g++ 5 or sooner is required to prevent a bug within the earlier versions of g++.
 
@@ -12,6 +19,8 @@ More specifically, it is a tool for those who use Dinero IV to run benchmarks ag
   * Block Size
   * Sub Block Size
   * Associativity 
+
+* Associativity hit and missPenalty are optional however, CPI will not be calculated without them
  
 * For every set of numbers you wish to use as a range (12 through 15) you must include a colon between the 2 numbers with no spaces. 
 for example: 12:15
