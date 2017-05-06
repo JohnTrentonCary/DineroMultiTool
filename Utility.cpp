@@ -4,6 +4,7 @@
 #include <iostream>
 #include <algorithm>
 #include <omp.h>
+#include <ctime>
 
 #include "Utility.h"
 
@@ -74,4 +75,16 @@ int Utility::threadCount()
   #pragma omp parallel reduction(+:n)
   n += 1;
   return n;
+}
+
+std::string Utility::getTime()
+{
+  char timeStr[80];
+  std::time_t rawTime;
+  struct tm * sysTime;
+
+  std::time(&rawTime);
+  sysTime = localtime(&rawTime);
+  std::strftime(timeStr, 80, "%y%m%d%H%M%S", sysTime);
+  return timeStr;
 }

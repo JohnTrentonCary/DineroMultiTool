@@ -21,7 +21,6 @@ void ConfigAnalyzer::populateStoredConfigs(ConfigBuilder &builder)
   std::regex reg("(l1-icache|l1-dcache|l2-ucache|l3-ucache)");
   int configSize = builder.builtConfigs.size();
 
-  //PARALLEL
   for (int i = 0; i < configSize; i++) {
 
     std::vector<std::string> commandParts;
@@ -116,7 +115,6 @@ void ConfigAnalyzer::buildBenchFiles(ConfigBuilder &builder)
   std::cout << ".";
 
   //for each benchmark
-  //PARALLEL
   for (int i = 0; i < benchSize; i++) {
     std::cout << ".";
     Utility::getBenchmarkName(builder.benchmarks[i + 1], benchmarkName);
@@ -166,7 +164,7 @@ void ConfigAnalyzer::buildBenchFiles(ConfigBuilder &builder)
       data << std::endl;
     }
 
-    file.open("./Combined/" + benchmarkName + ".txt");
+    file.open("./Combined/" + benchmarkName + "_" + builder.creationTime + ".txt");
     file << data.str();
     file.close();
     file.flush();
