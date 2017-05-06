@@ -15,4 +15,5 @@ public:
   static void reverseString(std::string &s);
   static void getBenchmarkName(std::string &s, std::string &benchmarkName);
   static int threadCount();
+  static std::string getTime();
 };
