@@ -5,13 +5,13 @@ More specifically, it is a tool for those who use Dinero IV to run benchmarks ag
 
 ## How to use
 To use DineroMultiTool you must
- 1. Write/edit an input file that contains all the arguements that define what configurations you wish to run. Please refer to sections below for guidence 
- 2. Execute DineroMultiTool and hand it your input file as the 2nd command line arguement. For example: "./DineroMultiTool test.dinconfig"
- 3. Go do whatever you would like to do which the program generates every possible valid configuration, executes execute these configurations for every defined benchmark and then analyzes the results of the simulations.
- 4. Once DineroMultiTool has finished, the data for every run will be stored within a folder that has the same name as the benchmark that was used. Additionally, a folder called "Combined" will be produced which contains all of the data from every simulation for each benchmark consolidated into 1 file for each benchmark
+ 1. Write/edit an input configuration file that contains all the arguments that define what cache configurations you wish to run. Please refer to sections below for guidance. You may edit the input configuration file, testConfig.dinconfig, that is included in this repository, or create your own input configuration file.
+ 2. Execute DineroMultiTool and hand it your input configuration file as the 2nd command line argument. For example: "./DineroMultiTool testConfig.dinconfig"
+ 3. Sit tight, or grab a bite and drink, while the program generates every possible valid configuration, executes those configurations for every defined benchmark, and analyzes the results of the simulations.
+ 4. Once DineroMultiTool has finished, the data for each executed configuration will be stored within a folder that has the same name as the benchmark that was used. Additionally, a folder called "Combined" will be produced. This contains all of the data from the configurations executed for each benchmark, all consolidated into one file for each benchmark. This file will be sorted in the order of best CPI (top) to worst CPI (bottom), with all associated configurations for each CPI calculated.
 
 ## Compilation Requirements
-* If compiling using g++, g++ 5 or sooner is required to prevent a bug within the earlier versions of g++.
+* If compiling using g++, version g++ 5 or sooner is required to prevent a bug within the earlier versions of g++.
 
 ## Rules and Tips for Writing/Using the input file
 * For every cache level you wish to run configurations for (L1 Instruction, L1 Data, L2, L3) you must include that cache's:
@@ -20,16 +20,15 @@ To use DineroMultiTool you must
   * Sub Block Size
   * Associativity 
 
-* Associativity hit and missPenalty are optional however, CPI will not be calculated without them
+ * Associativity hit and missPenalty are optional however, CPI will not be calculated without them
  
-* For every set of numbers you wish to use as a range (12 through 15) you must include a colon between the 2 numbers with no spaces. 
-for example: 12:15
+* For every set of numbers you wish to use as a range (12 through 15) you must include a colon between the 2 numbers with no spaces. For example: 12:15
 
-* For any of the arguments, you can add a "P" before the ":" if you wish to use exponents instead of the value of 2 raised to those exponents.
+* For any of the arguments, you can add a "P" before the ":" if you wish to use 2 raised to exponents instead of the value stated. For example (2^8): L1InstSizeP: 8
 
-* Ranges and non-exponential numbers, currently, should not be combined. With the current implementation DineroMultiTool will interprent 32:64 as you wanting the values 32, 33, 34, 35...64. This will most likely be fixed in future iterations. 
+* Ranges and non-exponential numbers, currently, should not be combined. With the current implementation DineroMultiTool will interprent 32:64 as you wanting the values 32, 33, 34, 35, ...64. This will most likely be fixed in future iterations. 
 
-* The default for ThreadLimit is whatever OpenMP calculates as the safe number of threads to run. Additionally, only the first number of this argument will be read. The others will be ignored and thrown out
+* The default for ThreadLimit is whatever OpenMP calculates as the safe number of threads to run. Additionally, only the first number of this argument will be read. The others will be ignored and thrown out.
 
 ## Configuration Commands
 
