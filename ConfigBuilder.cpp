@@ -145,7 +145,7 @@ void ConfigBuilder::processFile(std::ifstream &inFile)
         Utility::split(newConfigSet[i], ':', ranges);
 
         //Checks to make sure both numbers are numbers
-        char *a, *b;
+        char *a = nullptr, *b = nullptr;
         strtol(ranges[0].c_str(), &a, 10);
         strtol(ranges[1].c_str(), &b, 10);
 
@@ -193,7 +193,7 @@ void ConfigBuilder::processFile(std::ifstream &inFile)
 
 					newRange.push_back(std::to_string(val));
 				}
-        
+
 				std::vector<std::string>::iterator currentPos = newConfigSet.begin() + i + 1;
 				newConfigSet.insert(currentPos, newRange.begin(), newRange.end());
 				newConfigSet.erase(newConfigSet.begin() + i);
