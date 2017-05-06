@@ -12,6 +12,11 @@ bool Utility::isRange(std::string &value)
   if (strstr(value.c_str(), ":") == NULL) {
     return false;
   }
+  else if (value.front() == ':' || value.back() == ':')
+  {
+    std::cout << "Error: Invalid range: " << value << '\n';
+    exit(EXIT_FAILURE);
+  }
 
   return true;
 }
@@ -49,7 +54,7 @@ bool Utility::exist(std::string filename)
 {
   std::ifstream file(filename);
   if (!file.good()) {
-    std::cout << "Error: Invalid file name/path : " << filename << '\n';
+    std::cout << "Error: Invalid file name/path : " << filename << std::endl;
     return false;
   }
   return true;
@@ -74,4 +79,12 @@ int Utility::threadCount()
   #pragma omp parallel reduction(+:n)
   n += 1;
   return n;
+}
+
+bool Utility::isPowerOf2(int value)
+{
+  if((value & (value - 1)) == 0)
+    return true;
+
+  return false;
 }

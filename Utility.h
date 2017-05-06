@@ -1,5 +1,6 @@
 #include <string>
 #include <fstream>
+#include <vector>
 
 class Utility
 {
@@ -15,4 +16,5 @@ public:
   static void reverseString(std::string &s);
   static void getBenchmarkName(std::string &s, std::string &benchmarkName);
   static int threadCount();
+  static bool isPowerOf2(int value);
 };
