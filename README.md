@@ -24,9 +24,7 @@ To use DineroMultiTool you must
  
 * For every set of numbers you wish to use as a range (12 through 15) you must include a colon between the 2 numbers with no spaces. For example: 12:15
 
-* For any of the arguments, you can add a "P" before the ":" if you wish to use 2 raised to exponents instead of the value stated. For example (2^8): L1InstSizeP: 8
-
-* Ranges and non-exponential numbers, currently, should not be combined. With the current implementation DineroMultiTool will interprent 32:64 as you wanting the values 32, 33, 34, 35, ...64. This will most likely be fixed in future iterations. 
+* For any of the arguments, you can add a "P" before the ":" if you wish to use 2 raised to exponents instead of the value stated. For example, the line "L1InstSizeP: 8" would convert 256, in otherword it would perform 2^8
 
 * The default for ThreadLimit is whatever OpenMP calculates as the safe number of threads to run. Additionally, only the first number of this argument will be read. The others will be ignored and thrown out.
 
