@@ -67,7 +67,7 @@ To use DineroMultiTool you must
 | L2 Unified Associativity Hit Cost (in cycles) | L2AssocHit: nums (Positive Integers Only) | N/A |
 | L2 Unified Associativity Miss Penalty (in cycles) | L2AssocMiss: nums (Positive Integers Only) | N/A |
 
-#### L2 Unified Caches
+#### L3 Unified Caches
 | Name | Config File Argument | Equivalent Dinero Argument |
 | --- | --- | --- |
 | L3 Unified Size | L3Size: 8 32:128 512... | -l3-usize |
