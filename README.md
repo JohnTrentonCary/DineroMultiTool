@@ -3,9 +3,26 @@ DineroMultiTool was built to automate the generation, execution, and analysis ac
 
 More specifically, it is a tool for those who use Dinero IV to run benchmarks against various CPU cache architectures. The tool is meant to simplify the process of running a large amount of different cache configurations. DineroMultiTool provides configuration generation, execution automation, and CPI analysis of all valid configurations executed. All invalid configurations are filtered out.
 
-## Configuration Commands
+## Compilation Requirements
+* If compiling using g++, g++ 5 or sooner is required to prevent a bug within the earlier versions of g++.
 
-Note: For any of the arguments, you can add a "P" before the ":" if you wish to use exponents instead of the value of 2 raised to those exponents.
+## Rules and Tips for Writing/Using the input file
+* For every cache level you wish to run configurations for (L1 Instruction, L1 Data, L2, L3) you must include that cache's:
+  * Size
+  * Block Size
+  * Sub Block Size
+  * Associativity 
+ 
+* For every set of numbers you wish to use as a range (12 through 15) you must include a colon between the 2 numbers with no spaces. 
+for example: 12:15
+
+* For any of the arguments, you can add a "P" before the ":" if you wish to use exponents instead of the value of 2 raised to those exponents.
+
+* Ranges and non-exponential numbers, currently, should not be combined. With the current implementation DineroMultiTool will interprent 32:64 as you wanting the values 32, 33, 34, 35...64. This will most likely be fixed in future iterations. 
+
+* The default for ThreadLimit is whatever OpenMP calculates as the safe number of threads to run. Additionally, only the first number of this argument will be read. The others will be ignored and thrown out
+
+## Configuration Commands
 
 #### Arguments Specific to this Program
 | Name | Config File Arguments |
@@ -13,8 +30,6 @@ Note: For any of the arguments, you can add a "P" before the ":" if you wish to 
 | Location of Dinero | DineroLocation: path |
 | List of Benchmarks | Benchmarks: mark1.txt /home/desktop/mark2.txt... |
 | The maximum number of threads allowed | ThreadLimit: Dependent upon # of logical threads on system |
-
-Note: The default for ThreadLimit is whatever OpenMP calculates as the safe number of threads to run. Additionally, only the first number of this argument will be read. The others will be ignored and thrown out
 
 #### L1 Instruction Caches
 | Name | Config File Argument | Equivalent Dinero Argument |
