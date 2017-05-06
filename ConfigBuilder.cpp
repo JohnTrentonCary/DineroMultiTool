@@ -11,6 +11,7 @@
 ConfigBuilder::ConfigBuilder()
 {
   threadLimit = 0;
+  creationTime = Utility::getTime();
 }
 
 void ConfigBuilder::buildConfigs( CacheConfiguration &currentConfig,
@@ -198,11 +199,12 @@ void ConfigBuilder::constructConfigs()
   	benchmarks = configs[benchmarkIndex];
   	configs.erase(configs.begin() + benchmarkIndex);
     int benchSize = benchmarks.size();
+      std::cout << "1" << '\n';
 
   	std::cout << "Generating All Configurations.";
-    //PARALLEL
   	for (int i = 1; i < benchSize; i++)
   	{
+
       if (!Utility::exist(benchmarks[i]))
       {
         if (i == benchmarks.size() - 1)
@@ -227,7 +229,8 @@ void ConfigBuilder::constructConfigs()
   		commands[1] = "";
 
   		commands[0] = command;
-  		commands[1] = " <" + benchmarks[i] + " 2>> ./DineroErrorLog.txt > ./" + benchmarkName + "/run";
+  		commands[1] = " <" + benchmarks[i] + " 2>> ./DineroErrorLog.txt > ./" + benchmarkName + "/" + creationTime;
+
   		CacheConfiguration newConfig;
 
   		buildConfigs( newConfig, commands[0], commands[1], 0);
