@@ -1,5 +1,6 @@
 #include <climits>
 #include "CacheLevel.h"
+#include "Utility.h"
 
 CacheLevel::CacheLevel(int s, int bs, int sbs, int a, int mp, int f, int h, double mr)
 {
@@ -52,7 +53,7 @@ bool CacheLevel::canContinue(std::string type, double value)
 	if (type == "SubBlock Size" &&
 		blockSize >= newValue &&
 		newValue != 0 &&
-		((newValue & (newValue - 1)) == 0))
+		Utility::isPowerOf2(newValue))
 		return true;
 
 	return false;

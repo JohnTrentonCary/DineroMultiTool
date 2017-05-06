@@ -1,7 +1,7 @@
 DineroLocation: /opt/d4-7/./dineroIV
 Benchmarks: /opt/benchmarks/Livermore_8.txt /opt/benchmarks/ffti.txt /opt/benchmarks/Blackscholes.txt /opt/benchmarks/patricia.txt /opt/benchmarks/gcc_200.txt
 
-L1DataSizeP: 15:18
+L1DataSize: 32:256
 L1DataBlockSizeP: 5:6
 L1DataSubBlockSizeP: 5:6
 L1DataAssoc: 1:2

@@ -3,6 +3,8 @@
 #include <cmath>
 #include <iostream>
 #include <omp.h>
+#include <climits>
+#include <cstdlib>
 
 #include "ConfigBuilder.h"
 #include "configInfo.h"
@@ -57,7 +59,6 @@ void ConfigBuilder::buildConfigs( CacheConfiguration &currentConfig,
 	{
 		for (int i = 1; i < iterations; i++)
 		{
-			// std::string configName = configs[configPos][0];
 			std::string configValue = configs[configPos][i];
 
 			//check if it is safe to use the current value
@@ -130,6 +131,8 @@ void ConfigBuilder::processFile(std::ifstream &inFile)
       continue;
     }
 
+		int firstWordLength = newConfigSet[0].length();
+
 		//Check if any nodes have a range and remove any extra spaces
 		for (int i = 1; i < newConfigSetSize; i++)
     {
@@ -141,15 +144,56 @@ void ConfigBuilder::processFile(std::ifstream &inFile)
         std::vector<std::string> ranges;
         Utility::split(newConfigSet[i], ':', ranges);
 
-				int min = atoi(ranges[0].c_str()), max = atoi(ranges[1].c_str());
+        //Checks to make sure both numbers are numbers
+        char *a, *b;
+        strtol(ranges[0].c_str(), &a, 10);
+        strtol(ranges[1].c_str(), &b, 10);
+
+        if( *a != '\0')
+        {
+          std::cout << std::endl << "Error: Invalid range minimum: " << ranges[0] << std::endl;
+          exit(EXIT_FAILURE);
+        }
+
+        if(*b != '\0')
+        {
+          std::cout << std::endl << "Error: Invalid range maximum: " << ranges[1] << std::endl;
+          exit(EXIT_FAILURE);
+        }
+
+				int min = atoi(ranges[0].c_str());
+        int max = atoi(ranges[1].c_str());
+
+        //Checks if they are meant to be exponents or not
+        if (newConfigSet[0][firstWordLength - 2] != 'P')
+        {
+
+          if (!Utility::isPowerOf2(min) ) {
+            std::cout << std::endl << "Error: invalid value. The rangre's minimum is not a power of 2: " << min << std::endl;
+            exit(EXIT_FAILURE);
+          }
+
+          if (!Utility::isPowerOf2(max) ) {
+            std::cout << std::endl << "Error: invalid value. The range's maximum is not a power of 2: " << max << std::endl;
+            exit(EXIT_FAILURE);
+          }
+          //If they aren't exponents convert them to exponents so that we can
+          // more easily make the range
+          min = (int)( log(min) / log(2) );
+          max = (int)( log(max) / log(2) );
+        }
 
 				std::vector< std::string> newRange;
 
 				for (int i = min; i < max + 1; i++)
 				{
-					newRange.push_back(std::to_string(i));
-				}
+          int val = i;
+          if (newConfigSet[0][firstWordLength - 2] != 'P')
+            val = pow(2, i);
 
+					newRange.push_back(std::to_string(val));
+				}
+        
 				std::vector<std::string>::iterator currentPos = newConfigSet.begin() + i + 1;
 				newConfigSet.insert(currentPos, newRange.begin(), newRange.end());
 				newConfigSet.erase(newConfigSet.begin() + i);
@@ -158,7 +202,6 @@ void ConfigBuilder::processFile(std::ifstream &inFile)
 		}
 
 		//Check if the values were listed as powers
-		int firstWordLength = newConfigSet[0].length();
 		if (newConfigSet[0][firstWordLength - 2] == 'P')
 		{
 			//If they were listed as power, convert them to the actual values
