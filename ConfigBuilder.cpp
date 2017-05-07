@@ -248,7 +248,6 @@ void ConfigBuilder::constructConfigs()
   	benchmarks = configs[benchmarkIndex];
   	configs.erase(configs.begin() + benchmarkIndex);
     int benchSize = benchmarks.size();
-      std::cout << "1" << '\n';
 
   	std::cout << "Generating All Configurations.";
   	for (int i = 1; i < benchSize; i++)
