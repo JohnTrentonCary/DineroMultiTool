@@ -4,7 +4,7 @@ DineroMultiTool was built to automate the generation, execution, and analysis ac
 More specifically, it is a tool for those who use Dinero IV to run benchmarks against various CPU cache architectures. The tool is meant to simplify the process of running a large amount of different cache configurations. DineroMultiTool provides configuration generation, execution automation, and CPI analysis of all valid configurations executed. All invalid configurations are filtered out.
 
 ## How to use
-To use DineroMultiTool you must
+To use DineroMultiTool you must:
  1. Write/edit an input configuration file that contains all the arguments that define what cache configurations you wish to run. Please refer to sections below for guidance. You may edit the input configuration file, testConfig.dinconfig, that is included in this repository, or create your own input configuration file.
  2. Execute DineroMultiTool and hand it your input configuration file as the 2nd command line argument. For example: "./DineroMultiTool testConfig.dinconfig"
  3. Sit tight, or grab a bite and drink, while the program generates every possible valid configuration, executes those configurations for every defined benchmark, and analyzes the results of the simulations.
@@ -20,11 +20,11 @@ To use DineroMultiTool you must
   * Sub Block Size
   * Associativity 
 
- * Associativity hit and missPenalty are optional however, CPI will not be calculated without them
+ * Associativity hit and missPenalty are optional however, CPI will not be calculated without them.
  
 * For every set of numbers you wish to use as a range (12 through 15) you must include a colon between the 2 numbers with no spaces. For example: 12:15
 
-* For any of the arguments, you can add a "P" before the ":" if you wish to use 2 raised to exponents instead of the value stated. For example, the line "L1InstSizeP: 8" would convert 256, in otherword it would perform 2^8
+* For any of the arguments, you can add a "P" before the ":" if you wish to use 2 raised to exponents instead of the value stated. For example, the line "L1InstSizeP: 8" would convert 256, in otherword it would perform 2^8.
 
 * The default for ThreadLimit is whatever OpenMP calculates as the safe number of threads to run. Additionally, only the first number of this argument will be read. The others will be ignored and thrown out.
 
