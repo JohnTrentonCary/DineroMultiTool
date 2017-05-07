@@ -5,6 +5,7 @@
 #include <algorithm>
 #include <omp.h>
 #include <climits>
+#include <ctime>
 
 #include "Utility.h"
 
@@ -103,4 +104,16 @@ bool Utility::isInt(const char *s)
       return false;
 
   return (end != nullptr && *end == '\0');
+}
+
+std::string Utility::getTime()
+{
+  char timeStr[80];
+  std::time_t rawTime;
+  struct tm * sysTime;
+
+  std::time(&rawTime);
+  sysTime = localtime(&rawTime);
+  std::strftime(timeStr, 80, "%y%m%d%H%M%S", sysTime);
+  return timeStr;
 }
