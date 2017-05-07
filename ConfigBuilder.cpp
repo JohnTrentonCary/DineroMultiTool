@@ -145,17 +145,13 @@ void ConfigBuilder::processFile(std::ifstream &inFile)
         Utility::split(newConfigSet[i], ':', ranges);
 
         //Checks to make sure both numbers are numbers
-        char *a = nullptr, *b = nullptr;
-        strtol(ranges[0].c_str(), &a, 10);
-        strtol(ranges[1].c_str(), &b, 10);
-
-        if( *a != '\0')
+        if(!Utility::isInt(ranges[0].c_str()) )
         {
           std::cout << std::endl << "Error: Invalid range minimum: " << ranges[0] << std::endl;
           exit(EXIT_FAILURE);
         }
 
-        if(*b != '\0')
+        if(!Utility::isInt(ranges[1].c_str()))
         {
           std::cout << std::endl << "Error: Invalid range maximum: " << ranges[1] << std::endl;
           exit(EXIT_FAILURE);
@@ -164,9 +160,15 @@ void ConfigBuilder::processFile(std::ifstream &inFile)
 				int min = atoi(ranges[0].c_str());
         int max = atoi(ranges[1].c_str());
 
+        if(min > max)
+        {
+          std::cout << "Error: min is greater than max on: " << newConfigSet[i] << '\n';
+        }
+
         //Checks if they are meant to be exponents or not
         if (newConfigSet[0][firstWordLength - 2] != 'P')
         {
+
 
           if (!Utility::isPowerOf2(min) ) {
             std::cout << std::endl << "Error: invalid value. The rangre's minimum is not a power of 2: " << min << std::endl;
@@ -179,7 +181,9 @@ void ConfigBuilder::processFile(std::ifstream &inFile)
           }
           //If they aren't exponents convert them to exponents so that we can
           // more easily make the range
-          min = (int)( log(min) / log(2) );
+          if(min != 0)
+            min = (int)( log(min) / log(2) );
+
           max = (int)( log(max) / log(2) );
         }
 
@@ -189,7 +193,9 @@ void ConfigBuilder::processFile(std::ifstream &inFile)
 				{
           int val = i;
           if (newConfigSet[0][firstWordLength - 2] != 'P')
+          {
             val = pow(2, i);
+          }
 
 					newRange.push_back(std::to_string(val));
 				}

@@ -4,6 +4,7 @@
 #include <iostream>
 #include <algorithm>
 #include <omp.h>
+#include <climits>
 
 #include "Utility.h"
 
@@ -81,10 +82,25 @@ int Utility::threadCount()
   return n;
 }
 
-bool Utility::isPowerOf2(int value)
+bool Utility::isPowerOf2(const int value)
 {
   if((value & (value - 1)) == 0)
     return true;
 
   return false;
+}
+
+bool Utility::isInt(const char *s)
+{
+  if (s == nullptr || s[0] == '\0')
+        return false;
+
+  char* end = nullptr;
+  errno = 0;
+  strtol(s, &end, 10);
+
+  if (errno != 0)
+      return false;
+
+  return (end != nullptr && *end == '\0');
 }
