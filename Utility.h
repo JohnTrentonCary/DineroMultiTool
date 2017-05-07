@@ -16,5 +16,6 @@ public:
   static void reverseString(std::string &s);
   static void getBenchmarkName(std::string &s, std::string &benchmarkName);
   static int threadCount();
-  static bool isPowerOf2(int value);
+  static bool isPowerOf2(const int value);
+  static bool isInt(const char *s);
 };
