@@ -3,6 +3,13 @@ DineroMultiTool was built to automate the generation, execution, and analysis ac
 
 More specifically, it is a tool for those who use Dinero IV to run benchmarks against various CPU cache architectures. The tool is meant to simplify the process of running a large amount of different cache configurations. DineroMultiTool provides configuration generation, execution automation, and CPI analysis of all valid configurations executed. All invalid configurations are filtered out.
 
+# About Running/Compiling on Different Operating Systems
+* Linux: DineroMultiTool was developed within a Linux enviroment with the intention of it being ran and or compiled within a Linux enviroment. Therefore, there should be no problem running and or compiling assuming the Compilation Requirements (Listed down below) are met
+
+* Windows: There is no support for the ncurses library on Windows so you will need to enable/use the terminal that comes with the "Windows Subsystem for Linux" in order to run and or compile DineroMultiTool
+
+* OSX: It *may* run and or compile on an OSX machine but I have yet to confirm it.
+
 ## How to use
 To use DineroMultiTool you must:
  1. Write/edit an input configuration file that contains all the arguments that define what cache configurations you wish to run. Please refer to sections below for guidance. You may edit the input configuration file, testConfig.dinconfig, that is included in this repository, or create your own input configuration file.
@@ -12,6 +19,10 @@ To use DineroMultiTool you must:
 
 ## Compilation Requirements
 * If compiling using g++, version g++ 5 or sooner is required to prevent a bug within the earlier versions of g++.
+
+* A compilable version of ncurses needs to be installed
+
+* C++11 OpenMP support
 
 ## Rules and Tips for Writing/Using the input file
 * For every cache level you wish to run configurations for (L1 Instruction, L1 Data, L2, L3) you must include that cache's:
