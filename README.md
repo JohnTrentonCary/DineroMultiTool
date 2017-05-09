@@ -4,11 +4,11 @@ DineroMultiTool was built to automate the generation, execution, and analysis ac
 More specifically, it is a tool for those who use Dinero IV to run benchmarks against various CPU cache architectures. The tool is meant to simplify the process of running a large amount of different cache configurations. DineroMultiTool provides configuration generation, execution automation, and CPI analysis of all valid configurations executed. All invalid configurations are filtered out.
 
 ### About Running/Compiling on Different Operating Systems
-* Linux: DineroMultiTool was developed within a Linux enviroment with the intention of it being ran and or compiled within a Linux enviroment. Therefore, there should be no problem running and or compiling assuming the Compilation Requirements (Listed down below) are met
+* Linux: DineroMultiTool was developed within a Linux enviroment with the intention of it being ran and or compiled within a Linux enviroment. Therefore, there should be no problem running and or compiling assuming the Compilation Requirements (listed down below) are met.
 
-* Windows: There is no support for the ncurses library on Windows so you will need to enable/use the terminal that comes with the "Windows Subsystem for Linux" in order to run and or compile DineroMultiTool
+* Windows: There is no support for the ncurses library on Windows so you will need to enable/use the terminal that comes with the "Windows Subsystem for Linux" in order to run and or compile DineroMultiTool.
 
-* OSX: It *may* run and or compile on an OSX machine but I have yet to confirm it.
+* OSX: You will need the 32-bit Ncurses library (lib32-ncurses) installed via a package manager such as MacPorts or Homebrew. You will also need the most up-to-date version of GCC installed through a package manager such as Homebrew due to openMP support (Installation tutorial: https://goo.gl/J5nxD9). From here, you will need to run the makefile included to recompile into Mac compatible executable.
 
 ## How to use
 To use DineroMultiTool you must:
