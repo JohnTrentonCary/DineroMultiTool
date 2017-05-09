@@ -31,7 +31,7 @@ To use DineroMultiTool you must:
   * Sub Block Size
   * Associativity 
 
- * Associativity hit and missPenalty are optional however, CPI will not be calculated without them.
+ * Associativity hit and missPenalty are optional, however CPI will not be calculated without them.
  
 * For every set of numbers you wish to use as a range (12 through 15) you must include a colon between the 2 numbers with no spaces. For example: 12:15
 
